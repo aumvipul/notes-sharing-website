@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <h3 class="mb-4 text-center">Create Account</h3>
+
+    <form method="POST">
+        <input type="text" name="username" class="form-control mb-3" placeholder="Username" required>
+        <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+
+        <button class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <p class="text-center mt-3">
+        Already have an account? <a href="/login">Login</a>
+    </p>
+</div>
+{% endblock %}

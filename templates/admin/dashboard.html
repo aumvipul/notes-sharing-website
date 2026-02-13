@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Admin Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow p-4 text-center">
+                <h4>Total Users</h4>
+                <h2 class="text-primary">{{ total_users }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow p-4 text-center">
+                <h4>Total Notes</h4>
+                <h2 class="text-success">{{ total_notes }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="/admin/users" class="btn btn-primary">Manage Users</a>
+        <a href="/admin/notes" class="btn btn-success">Manage Notes</a>
+    </div>
+</div>
+
+{% endblock %}

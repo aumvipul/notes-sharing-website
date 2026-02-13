@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:600px;">
+    <h3 class="mb-4">Upload Notes</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" class="form-control mb-3" placeholder="Note Title" required>
+        <input type="text" name="subject" class="form-control mb-3" placeholder="Subject" required>
+        <input type="file" name="file" class="form-control mb-3" required>
+
+        <button class="btn btn-primary w-100">Upload</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- Page Title -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Browse Notes</h3>
+        <a href="/upload" class="btn btn-success">Upload New Note</a>
+    </div>
+
+    <!-- 🔍 Search & Filter -->
+    <form method="GET" class="row g-2 mb-4">
+
+        <!-- Search by title -->
+        <div class="col-md-5">
+            <input
+                type="text"
+                name="search"
+                value="{{ search_query }}"
+                class="form-control"
+                placeholder="Search by note title..."
+            >
+        </div>
+
+        <!-- Filter by subject -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+
+            <select name="subject" class="form-select">
+                <option value="">All Subjects</option>
+                {% for sub in subjects %}
+                    <option value="{{ sub }}" {% if sub == subject_filter %}selected{% endif %}>
+                        {{ sub }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Search button -->
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100">Search</button>
+        </div>
+
+    </form>
+
+    <!-- 📚 Notes Grid -->
+    <div class="row">
+
+        {% if notes %}
+            {% for note in notes %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100 border-0">
+
+                   <div class="card-body d-flex flex-column">
+
+    <!-- Title -->
+    <h5 class="card-title">{{ note.title }}</h5>
+
+    <!-- Subject -->
+    <p class="text-muted mb-2">{{ note.subject }}</p>
+
+    <!-- ❤️ Like Count -->
+    <p class="mb-3">
+        ❤️ {{ like_counts[note.id] }} Likes
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-auto d-flex gap-2">
+
+        <!-- Like button -->
+        <a href="/like/{{ note.id }}" class="btn btn-outline-danger btn-sm w-50">
+            Like
+        </a>
+
+        <!-- Download button -->
+        <a href="/download/{{ note.filename }}" class="btn btn-primary btn-sm w-50">
+            Download
+        </a>
+
+    </div>
+</div>
+
+
+                        <!-- Title -->
+                        <h5 class="card-title">{{ note.title }}</h5>
+
+                        <!-- Subject -->
+                        <p class="text-muted mb-4">{{ note.subject }}</p>
+
+                        <!-- Download Button -->
+                        <div class="mt-auto">
+                            <a href="/download/{{ note.filename }}"
+                               class="btn btn-primary btn-sm w-100">
+                                Download Note
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        {% else %}
+            <!-- No notes found -->
+            <div class="text-center py-5">
+                <h5 class="text-muted">No notes found</h5>
+                <p class="text-muted">Try a different search or upload a new note.</p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
